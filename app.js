@@ -24,12 +24,7 @@ const thumb = id => `https://picsum.photos/seed/clipbazi-${id}/640/360`;
 const SP = 'target="_blank" rel="sponsored nofollow noopener"';
 
 function sponsorCardHTML(title){
-  return `<div class="scard"><span class="ad-label">SPONSORED</span><h3>${title}</h3>
-    <div class="row">
-      <a class="cta" href="${LINK_BONUS}" ${SP}>🎁 $5 ফ্রি বোনাস</a>
-      <a class="cta ghost" href="${LINK_OFFER1}" ${SP}>🔥 স্পেশাল অফার</a>
-      <a class="cta ghost" href="${LINK_OFFER2}" ${SP}>⭐ হট ডিল</a>
-    </div></div>`;
+  return midAdHTML();
 }
 
 function cardHTML(v){
@@ -100,33 +95,14 @@ function initWatch(){
       </div>`).join('');
 }
 
-/* ---------- popunder: $5 link opens on first click (once per session) ---------- */
-function initPopunder(){
-  try{ if(sessionStorage.getItem('cb-pop')) return; }catch(e){}
-  const fire = () => {
-    try{ sessionStorage.setItem('cb-pop','1'); }catch(e){}
-    window.open(LINK_BONUS, '_blank', 'noopener');
-    document.removeEventListener('click', fire);
-  };
-  document.addEventListener('click', fire);
-}
-
-/* ---------- scroll ad: bottom bar slides up after scrolling ---------- */
-function initScrollAd(){
-  if(document.getElementById('scrollAd')) return;
-  const bar = document.createElement('div');
-  bar.id = 'scrollAd';
-  bar.innerHTML =
-    `<span class="ad-label">SPONSORED</span>
-     <span class="stxt">⭐ <b>হট ডিল!</b> সীমিত সময়ের অফার</span>
-     <a class="slink" href="${LINK_OFFER2}" ${SP}>দেখুন ⭐</a>
-     <button class="sx" aria-label="বন্ধ করুন">✕</button>`;
-  document.body.appendChild(bar);
-  bar.querySelector('.sx').onclick = () => bar.remove();
-  let shown = false;
-  window.addEventListener('scroll', () => {
-    if(!shown && window.scrollY > 400){ shown = true; bar.classList.add('show'); }
-  }, {passive:true});
+/* ---------- middle ad banner (auto-shown in the middle of the grid) ---------- */
+function midAdHTML(){
+  return `<div class="ad-banner">
+    <span class="ad-label">SPONSORED</span>
+    <h3>🔥 স্পেশাল অফার!</h3>
+    <p>সীমিত সময়ের স্পেশাল ডিল — এখনই দেখুন</p>
+    <a class="cta" href="${LINK_OFFER1}" ${SP}>অফারটি দেখুন 🔥</a>
+  </div>`;
 }
 
 /* ---------- free visitor counter ---------- */
@@ -151,8 +127,6 @@ function initCounter(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initPopunder();
-  initScrollAd();
   initCounter();
   if(document.getElementById('grid')) initIndex();
   if(document.getElementById('player')) initWatch();

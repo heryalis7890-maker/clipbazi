@@ -9,19 +9,9 @@
 body{background:var(--bg);color:var(--txt);font-family:'Hind Siliguri',system-ui,sans-serif;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
-/* ---- sticky sponsor bar: always on top of screen ---- */
-.sbar{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#2a1650,#3d1a4e);
-  border-bottom:1px solid #ffffff22;padding:8px 10px;display:flex;gap:8px;overflow-x:auto;
-  scrollbar-width:none;align-items:center}
-.sbar::-webkit-scrollbar{display:none}
-.sbar .stag{flex:0 0 auto;font-size:12px;color:#ffd166;font-weight:700;white-space:nowrap}
-.slink{flex:0 0 auto;white-space:nowrap;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;
-  background:var(--grad);color:#fff;box-shadow:0 2px 10px #a855f755}
-.slink.alt{background:#0d0a1a;border:1px solid var(--acc);color:#e9d5ff}
-
 /* ---- header ---- */
 header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg2);
-  border-bottom:1px solid #ffffff14;position:sticky;top:47px;z-index:90}
+  border-bottom:1px solid #ffffff14;position:sticky;top:0;z-index:90}
 .logo{font-size:22px;font-weight:700;white-space:nowrap}
 .logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .search{flex:1;display:flex;max-width:520px}
@@ -71,24 +61,12 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var
 .card-meta{display:flex;gap:12px;color:var(--mut);font-size:12px;margin-top:6px}
 .empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px}
 
-/* ---- in-feed sponsor cards ---- */
-.scard{grid-column:1/-1;background:linear-gradient(135deg,#2a1650,#431a4e);border:1px dashed #a855f788;
-  border-radius:var(--rad);padding:18px;text-align:center}
-.scard .ad-label{font-size:11px;color:#ffd166;letter-spacing:1px}
-.scard h3{margin:8px 0 12px;font-size:17px}
-.scard .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-
 /* ---- watch page ---- */
 .watch-wrap{max-width:1060px;margin:0 auto;padding:16px}
 .player-box{border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 30px #00000088}
 .player-box video{width:100%;aspect-ratio:16/9;display:block}
 .wtitle{font-size:clamp(17px,3.5vw,24px);margin:14px 0 8px}
 .wmeta{display:flex;gap:14px;color:var(--mut);font-size:13px;flex-wrap:wrap;margin-bottom:14px}
-.cta-card{background:linear-gradient(135deg,#2a1650,#431a4e);border:1px solid #a855f755;border-radius:16px;
-  padding:20px;margin:6px 0 18px;text-align:center}
-.cta-card h2{font-size:19px;margin-bottom:6px}
-.cta-card p{color:var(--mut);font-size:14px;margin-bottom:14px}
-.cta-card .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .rel-h{font-size:17px;margin:18px 0 10px}
 .rel-item{display:flex;gap:10px;background:var(--card);border-radius:12px;overflow:hidden;
   margin-bottom:10px;cursor:pointer;border:1px solid #ffffff0d}
@@ -99,21 +77,13 @@ footer{border-top:1px solid #ffffff14;padding:22px 16px;color:var(--mut);font-si
   text-align:center;line-height:1.7}
 footer .dis{font-size:12px;opacity:.8;max-width:640px;margin:8px auto 0}
 
-/* ---- home ad banner ---- */
-.home-ad{margin:0 16px 16px;background:linear-gradient(135deg,#3d1a4e,#5b21b6);
-  border:1px solid #a855f766;border-radius:16px;padding:20px;text-align:center}
-.home-ad h3{margin:6px 0;font-size:19px}
-.home-ad p{color:var(--mut);font-size:14px;margin-bottom:12px}
-
-/* ---- scroll-triggered bottom ad ---- */
-#scrollAd{position:fixed;left:10px;right:10px;bottom:10px;z-index:150;
-  background:linear-gradient(90deg,#2a1650,#431a4e);border:1px solid #a855f788;
-  border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:10px;
-  transform:translateY(140%);transition:transform .35s;box-shadow:0 8px 30px #000a}
-#scrollAd.show{transform:translateY(0)}
-#scrollAd .stxt{flex:1;font-size:13px}
-#scrollAd .sx{background:#ffffff1c;border:none;color:#fff;width:28px;height:28px;
-  border-radius:50%;cursor:pointer;flex:0 0 auto;font-size:13px}
+/* ---- ad banners: top / middle / end, auto-shown ---- */
+.ad-banner{margin:14px 16px;background:linear-gradient(135deg,#2a1650,#431a4e);
+  border:1px solid #a855f766;border-radius:16px;padding:22px 18px;text-align:center}
+.ad-banner .ad-label{font-size:11px;color:#ffd166;letter-spacing:2px;font-weight:700}
+.ad-banner h3{margin:8px 0 4px;font-size:19px}
+.ad-banner p{color:var(--mut);font-size:14px;margin-bottom:14px}
+.watch-wrap .ad-banner{margin:14px 0}
 
 /* ---- visitor counter ---- */
 .vcounter{margin-top:12px;font-size:13px;color:var(--mut)}
