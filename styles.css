@@ -1,0 +1,100 @@
+/* ClipBazi — fresh dark video site */
+:root{
+  --bg:#0d0a1a; --bg2:#151029; --card:#1b1533; --card2:#221b3d;
+  --txt:#f2efff; --mut:#b9b3d9; --acc:#a855f7; --acc2:#ec4899;
+  --grad:linear-gradient(135deg,#7c3ed6,#ec4899);
+  --rad:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Hind Siliguri',system-ui,sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ---- sticky sponsor bar: always on top of screen ---- */
+.sbar{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#2a1650,#3d1a4e);
+  border-bottom:1px solid #ffffff22;padding:8px 10px;display:flex;gap:8px;overflow-x:auto;
+  scrollbar-width:none;align-items:center}
+.sbar::-webkit-scrollbar{display:none}
+.sbar .stag{flex:0 0 auto;font-size:12px;color:#ffd166;font-weight:700;white-space:nowrap}
+.slink{flex:0 0 auto;white-space:nowrap;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;
+  background:var(--grad);color:#fff;box-shadow:0 2px 10px #a855f755}
+.slink.alt{background:#0d0a1a;border:1px solid var(--acc);color:#e9d5ff}
+
+/* ---- header ---- */
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg2);
+  border-bottom:1px solid #ffffff14;position:sticky;top:47px;z-index:90}
+.logo{font-size:22px;font-weight:700;white-space:nowrap}
+.logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.search{flex:1;display:flex;max-width:520px}
+.search input{flex:1;padding:10px 14px;border-radius:999px 0 0 999px;border:1px solid #ffffff22;
+  background:#0d0a1a;color:var(--txt);font-size:14px;outline:none}
+.search button{padding:10px 16px;border-radius:0 999px 999px 0;border:none;background:var(--grad);
+  color:#fff;font-size:15px;cursor:pointer}
+.hdr-actions{margin-left:auto;display:flex;gap:8px}
+.btn{padding:9px 16px;border-radius:999px;border:1px solid #ffffff2c;background:transparent;
+  color:var(--txt);font-size:14px;cursor:pointer}
+.btn.primary{background:var(--grad);border:none;color:#fff;font-weight:700}
+
+/* ---- hero ---- */
+.hero{margin:16px;border-radius:18px;overflow:hidden;position:relative;min-height:300px;
+  display:flex;align-items:flex-end;background-size:cover;background-position:center;cursor:pointer}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0d0a1add 10%,transparent 65%)}
+.hero-in{position:relative;z-index:2;padding:22px;width:100%}
+.hero-tag{display:inline-block;background:var(--grad);font-size:12px;font-weight:700;padding:5px 12px;
+  border-radius:999px;margin-bottom:10px}
+.hero h1{font-size:clamp(20px,4.5vw,34px);margin-bottom:8px}
+.hero p{color:var(--mut);font-size:14px;margin-bottom:14px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.cta{padding:12px 22px;border-radius:999px;font-weight:700;font-size:15px;background:var(--grad);
+  color:#fff;box-shadow:0 4px 18px #a855f766;display:inline-block}
+.cta.ghost{background:#ffffff14;border:1px solid #ffffff2e;box-shadow:none}
+
+/* ---- categories ---- */
+.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 12px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{flex:0 0 auto;padding:8px 18px;border-radius:999px;background:var(--card);border:1px solid #ffffff18;
+  color:var(--mut);font-size:14px;cursor:pointer;white-space:nowrap}
+.cat.active{background:var(--grad);color:#fff;border:none;font-weight:700}
+
+/* ---- grid & cards ---- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:0 16px 20px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}}
+.card{background:var(--card);border-radius:var(--rad);overflow:hidden;cursor:pointer;
+  transition:transform .15s;border:1px solid #ffffff0d}
+.card:hover{transform:translateY(-3px);border-color:#a855f766}
+.thumb{position:relative;aspect-ratio:16/9;background:#000}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.dur{position:absolute;right:8px;bottom:8px;background:#000c;color:#fff;font-size:12px;
+  padding:2px 8px;border-radius:6px}
+.card-body{padding:10px 12px}
+.card-title{font-size:14px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden;min-height:38px}
+.card-meta{display:flex;gap:12px;color:var(--mut);font-size:12px;margin-top:6px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px}
+
+/* ---- in-feed sponsor cards ---- */
+.scard{grid-column:1/-1;background:linear-gradient(135deg,#2a1650,#431a4e);border:1px dashed #a855f788;
+  border-radius:var(--rad);padding:18px;text-align:center}
+.scard .ad-label{font-size:11px;color:#ffd166;letter-spacing:1px}
+.scard h3{margin:8px 0 12px;font-size:17px}
+.scard .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ---- watch page ---- */
+.watch-wrap{max-width:1060px;margin:0 auto;padding:16px}
+.player-box{border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 30px #00000088}
+.player-box video{width:100%;aspect-ratio:16/9;display:block}
+.wtitle{font-size:clamp(17px,3.5vw,24px);margin:14px 0 8px}
+.wmeta{display:flex;gap:14px;color:var(--mut);font-size:13px;flex-wrap:wrap;margin-bottom:14px}
+.cta-card{background:linear-gradient(135deg,#2a1650,#431a4e);border:1px solid #a855f755;border-radius:16px;
+  padding:20px;margin:6px 0 18px;text-align:center}
+.cta-card h2{font-size:19px;margin-bottom:6px}
+.cta-card p{color:var(--mut);font-size:14px;margin-bottom:14px}
+.cta-card .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.rel-h{font-size:17px;margin:18px 0 10px}
+.rel-item{display:flex;gap:10px;background:var(--card);border-radius:12px;overflow:hidden;
+  margin-bottom:10px;cursor:pointer;border:1px solid #ffffff0d}
+.rel-item .thumb{width:150px;flex:0 0 150px}
+.rel-item>div:last-child{padding:8px 10px 8px 0}
+
+footer{border-top:1px solid #ffffff14;padding:22px 16px;color:var(--mut);font-size:13px;
+  text-align:center;line-height:1.7}
+footer .dis{font-size:12px;opacity:.8;max-width:640px;margin:8px auto 0}
