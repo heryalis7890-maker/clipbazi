@@ -100,7 +100,54 @@ function initWatch(){
       </div>`).join('');
 }
 
+/* ---------- entry popup ad: offers pop up on every visit ---------- */
+function initPopup(){
+  if(document.getElementById('adpop')) return;
+  const pop = document.createElement('div');
+  pop.id = 'adpop';
+  pop.innerHTML =
+    `<div class="adpop-back"></div>
+     <div class="adpop-box">
+       <button class="adpop-x" aria-label="বন্ধ করুন">✕</button>
+       <span class="ad-label">SPONSORED</span>
+       <h3>🎁 স্পেশাল অফার — মিস করবেন না!</h3>
+       <a class="cta pop-cta" href="${LINK_BONUS}" ${SP}>$5 ফ্রি বোনাস নিন 🎁</a>
+       <div class="pop-row">
+         <a class="cta ghost" href="${LINK_OFFER1}" ${SP}>🔥 স্পেশাল অফার</a>
+         <a class="cta ghost" href="${LINK_OFFER2}" ${SP}>⭐ হট ডিল</a>
+       </div>
+     </div>`;
+  document.body.appendChild(pop);
+  const close = () => pop.remove();
+  pop.querySelector('.adpop-x').onclick = close;
+  pop.querySelector('.adpop-back').onclick = close;
+  setTimeout(() => pop.classList.add('show'), 1200);
+}
+
+/* ---------- free visitor counter ---------- */
+function initCounter(){
+  const day = new Date().toISOString().slice(0,10);
+  const foot = document.querySelector('footer');
+  if(!foot) return;
+  const el = document.createElement('div');
+  el.className = 'vcounter';
+  el.innerHTML = `👁 আজকের ভিজিটর: <b id="vcDay">…</b> &nbsp;•&nbsp; মোট ভিজিটর: <b id="vcTotal">…</b>`;
+  foot.appendChild(el);
+  const bn = n => Number(n).toLocaleString('bn-BD');
+  const get = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+  get('https://api.countapi.xyz/hit/clipbazi24/total').then(d => {
+    const t = document.getElementById('vcTotal');
+    if(d && d.value != null && t) t.textContent = bn(d.value);
+  });
+  get(`https://api.countapi.xyz/hit/clipbazi24/day-${day}`).then(d => {
+    const t = document.getElementById('vcDay');
+    if(d && d.value != null && t) t.textContent = bn(d.value);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initPopup();
+  initCounter();
   if(document.getElementById('grid')) initIndex();
   if(document.getElementById('player')) initWatch();
 });

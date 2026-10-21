@@ -98,3 +98,23 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var
 footer{border-top:1px solid #ffffff14;padding:22px 16px;color:var(--mut);font-size:13px;
   text-align:center;line-height:1.7}
 footer .dis{font-size:12px;opacity:.8;max-width:640px;margin:8px auto 0}
+
+/* ---- entry popup ad ---- */
+#adpop{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+#adpop.show{opacity:1;pointer-events:auto}
+.adpop-back{position:absolute;inset:0;background:#000000aa}
+.adpop-box{position:relative;background:linear-gradient(135deg,#2a1650,#431a4e);
+  border:1px solid #a855f788;border-radius:18px;padding:28px 22px;max-width:380px;width:100%;
+  text-align:center;transform:scale(.9);transition:transform .3s;box-shadow:0 12px 50px #000}
+#adpop.show .adpop-box{transform:scale(1)}
+.adpop-x{position:absolute;top:10px;right:12px;background:#ffffff1c;border:none;color:#fff;
+  width:32px;height:32px;border-radius:50%;font-size:15px;cursor:pointer}
+.adpop-box h3{margin:8px 0 16px;font-size:18px}
+.pop-cta{width:100%;margin-bottom:10px}
+.pop-row{display:flex;gap:8px}
+.pop-row .cta{flex:1;padding:10px 6px;font-size:13px}
+
+/* ---- visitor counter ---- */
+.vcounter{margin-top:12px;font-size:13px;color:var(--mut)}
+.vcounter b{color:#ffd166}
