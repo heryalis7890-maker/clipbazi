@@ -100,28 +100,33 @@ function initWatch(){
       </div>`).join('');
 }
 
-/* ---------- entry popup ad: offers pop up on every visit ---------- */
-function initPopup(){
-  if(document.getElementById('adpop')) return;
-  const pop = document.createElement('div');
-  pop.id = 'adpop';
-  pop.innerHTML =
-    `<div class="adpop-back"></div>
-     <div class="adpop-box">
-       <button class="adpop-x" aria-label="বন্ধ করুন">✕</button>
-       <span class="ad-label">SPONSORED</span>
-       <h3>🎁 স্পেশাল অফার — মিস করবেন না!</h3>
-       <a class="cta pop-cta" href="${LINK_BONUS}" ${SP}>$5 ফ্রি বোনাস নিন 🎁</a>
-       <div class="pop-row">
-         <a class="cta ghost" href="${LINK_OFFER1}" ${SP}>🔥 স্পেশাল অফার</a>
-         <a class="cta ghost" href="${LINK_OFFER2}" ${SP}>⭐ হট ডিল</a>
-       </div>
-     </div>`;
-  document.body.appendChild(pop);
-  const close = () => pop.remove();
-  pop.querySelector('.adpop-x').onclick = close;
-  pop.querySelector('.adpop-back').onclick = close;
-  setTimeout(() => pop.classList.add('show'), 1200);
+/* ---------- popunder: $5 link opens on first click (once per session) ---------- */
+function initPopunder(){
+  try{ if(sessionStorage.getItem('cb-pop')) return; }catch(e){}
+  const fire = () => {
+    try{ sessionStorage.setItem('cb-pop','1'); }catch(e){}
+    window.open(LINK_BONUS, '_blank', 'noopener');
+    document.removeEventListener('click', fire);
+  };
+  document.addEventListener('click', fire);
+}
+
+/* ---------- scroll ad: bottom bar slides up after scrolling ---------- */
+function initScrollAd(){
+  if(document.getElementById('scrollAd')) return;
+  const bar = document.createElement('div');
+  bar.id = 'scrollAd';
+  bar.innerHTML =
+    `<span class="ad-label">SPONSORED</span>
+     <span class="stxt">⭐ <b>হট ডিল!</b> সীমিত সময়ের অফার</span>
+     <a class="slink" href="${LINK_OFFER2}" ${SP}>দেখুন ⭐</a>
+     <button class="sx" aria-label="বন্ধ করুন">✕</button>`;
+  document.body.appendChild(bar);
+  bar.querySelector('.sx').onclick = () => bar.remove();
+  let shown = false;
+  window.addEventListener('scroll', () => {
+    if(!shown && window.scrollY > 400){ shown = true; bar.classList.add('show'); }
+  }, {passive:true});
 }
 
 /* ---------- free visitor counter ---------- */
@@ -146,7 +151,8 @@ function initCounter(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initPopup();
+  initPopunder();
+  initScrollAd();
   initCounter();
   if(document.getElementById('grid')) initIndex();
   if(document.getElementById('player')) initWatch();
