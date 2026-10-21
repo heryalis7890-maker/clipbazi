@@ -135,11 +135,11 @@ function initCounter(){
   foot.appendChild(el);
   const bn = n => Number(n).toLocaleString('bn-BD');
   const get = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
-  get('https://api.countapi.xyz/hit/clipbazi24/total').then(d => {
+  get('https://abacus.jasoncameron.dev/hit/clipbazi24/total').then(d => {
     const t = document.getElementById('vcTotal');
     if(d && d.value != null && t) t.textContent = bn(d.value);
   });
-  get(`https://api.countapi.xyz/hit/clipbazi24/day-${day}`).then(d => {
+  get(`https://abacus.jasoncameron.dev/hit/clipbazi24/day-${day}`).then(d => {
     const t = document.getElementById('vcDay');
     if(d && d.value != null && t) t.textContent = bn(d.value);
   });
